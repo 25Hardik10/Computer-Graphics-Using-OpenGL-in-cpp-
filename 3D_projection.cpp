@@ -3,9 +3,9 @@
 vector<vector<GLfloat>> Mw2v(point3d camera, point3d pup, point3d coi) {
 	point3d nv = camera - coi;
 	point3d vv = pup - camera;
-	point3d n = nv / mod(nv);
-	point3d v = vv / mod(vv);
-	point3d u = cross_prod(v, n);
+	point3d n = nv / point3d::mod(nv);
+	point3d v = vv / point3d::mod(vv);
+	point3d u = point3d::cross_prod(v, n);
 
 	vector<vector<GLfloat>> R = { 
 								{u.x,u.y,u.z,0},

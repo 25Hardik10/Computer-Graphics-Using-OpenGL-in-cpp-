@@ -14,8 +14,8 @@ vector<vector<vector<GLfloat>>> _2dtohomo(vector<point2d> arr, GLfloat h) {
 vector<point2d> homoto2d(vector<vector<vector<GLfloat>>> arr) {
 	vector<point2d> ans;
 	for (vector<vector<GLfloat>>& it : arr) {
-		GLint x= it[0][0] / it[2][0];
-		GLint y= it[1][0] / it[2][0];
+		GLfloat x= it[0][0] / it[2][0];
+		GLfloat y= it[1][0] / it[2][0];
 		ans.push_back({x,y});
 	}
 	return ans;

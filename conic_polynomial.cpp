@@ -1,10 +1,10 @@
 #include "utils.h"
 
-vector<point2d> circle_polynomial(GLfloat r) {
+vector<pixel> circle_polynomial(GLfloat r) {
 
 	GLfloat x = 0;
 
-	vector<point2d> P;
+	vector<pixel> P;
 
 	while(x<=r) {
 		GLfloat y = sqrt(r*r-x*x);
@@ -22,12 +22,12 @@ vector<point2d> circle_polynomial(GLfloat r) {
 	return P;
 }
 
-vector<point2d> ellipse_polynomial(GLfloat a, GLfloat b) {
+vector<pixel> ellipse_polynomial(GLfloat a, GLfloat b) {
 
 	GLfloat x = 0, y= b;
 	GLfloat m = b / a;
 
-	vector<point2d> P;
+	vector<pixel> P;
 
 	while (b * b * x <= a * a * y) {
 		P.push_back({roundof(x), roundof(y)});

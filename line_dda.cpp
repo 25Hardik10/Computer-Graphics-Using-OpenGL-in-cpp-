@@ -1,11 +1,13 @@
 #include "utils.h"
 
-vector<point2d> line_dda(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) {
+vector<pixel> line_dda(point2d p1, point2d p2) {
     
+    GLfloat x1 = p1.x, y1 = p1.y, x2 = p2.x, y2=p2.y;
+
     GLfloat dx = x2 - x1;
     GLfloat dy = y2 - y1;
 
-    vector<point2d> P;
+    vector<pixel> P;
 
     if (dx == 0 && dy == 0) {
         P.push_back({roundof(x1), roundof(y1)});

@@ -1,11 +1,11 @@
 #include "utils.h"
 
-vector<point2d> circle_breshenham(GLint r) {
+vector<pixel> circle_breshenham(GLfloat r) {
 
 	GLint x = 0, y = r;
 	GLint d = 2 * r - 3;
 	
-	vector<point2d> P;
+	vector<pixel> P;
 	while (x < y) {
 		P.push_back({ x,  y});
 		P.push_back({- x,  y});
@@ -28,12 +28,12 @@ vector<point2d> circle_breshenham(GLint r) {
 	return P;
 }
 
-vector<point2d> ellipse_breshenham(GLint a, GLint b) {
+vector<pixel> ellipse_breshenham(GLfloat a, GLfloat b) {
 
 	GLint x = 0, y = b;
 	GLint d = 2 * a * a * b - 2 * b * b - a * a;
 
-	vector<point2d> P;
+	vector<pixel> P;
 	while (b * b * x < a * a * y) {
 		P.push_back({ x,  y});
 		P.push_back({- x,  y});

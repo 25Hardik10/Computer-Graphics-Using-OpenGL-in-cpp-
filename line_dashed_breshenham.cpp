@@ -1,13 +1,16 @@
 #include "utils.h"
 
-vector<point2d> line_dashed_breshenham(GLint x1, GLint y1, GLint x2, GLint y2, GLint dl, GLint idl) {
+vector<pixel> line_dashed_breshenham(point2d p1, point2d p2, GLfloat dl, GLfloat idl) {
     GLint l = dl + idl;
     GLint n = 0;
+
+    GLint x1 = p1.x, y1 = p1.y, x2 = p2.x, y2 = p2.y;
 
     GLint dx = x2 - x1;
     GLint dy = y2 - y1;
 
-    vector<point2d> P;
+    vector<pixel> P;
+
     GLint x = x1;
     GLint y = y1;
     P.push_back({x, y});

@@ -13,7 +13,7 @@ struct edge {
 	GLint dir;
 };
 
-vector<point2d> scan_line_polygon_filling(vector<point2d> vertices) {
+vector<pixel> scan_line_polygon_filling(vector<pixel> vertices) {
 
 	int v = vertices.size();
 
@@ -77,7 +77,7 @@ vector<point2d> scan_line_polygon_filling(vector<point2d> vertices) {
 		sorted_edge_table[-Y_min+edge_table[i].y_min].push_back(edge_table[i]);
 	}
 
-	vector<point2d> P;
+	vector<pixel> P;
 
 	vector<edge> active_table;
 	for (int y = Y_min; y <= Y_max; y++) {

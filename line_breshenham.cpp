@@ -1,11 +1,13 @@
 #include "utils.h"
 
-vector<point2d> line_breshenham(GLint x1, GLint y1, GLint x2, GLint y2) {
+vector<pixel> line_breshenham(point2d p1, point2d p2) {
+
+    GLint x1 = p1.x, y1 = p1.y, x2 = p2.x, y2 = p2.y;
 
     GLint dx = x2 - x1;
     GLint dy = y2 - y1;
 
-    vector<point2d> P;
+    vector<pixel> P;
 
     P.push_back({x1, y1});
 

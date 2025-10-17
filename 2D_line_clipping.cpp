@@ -29,7 +29,7 @@ GLubyte encode(point2d pt, point2d win_min, point2d win_max) {
 	return code;
 }
 
-void line_clip_Coh_Suth(point2d win_min, point2d win_max, point2d p1, point2d p2) {
+vector<point2d> line_clip_Coh_Suth(point2d win_min, point2d win_max, point2d p1, point2d p2) {
 	GLint done = false, plotLine = false;
 	
 	while (!done) {
@@ -74,9 +74,9 @@ void line_clip_Coh_Suth(point2d win_min, point2d win_max, point2d p1, point2d p2
 		}
 	}
 	if (plotLine) {
-		plot2d(line_breshenham(roundof(p1.x), roundof(p1.y), roundof(p2.x), roundof(p2.y)));
+		return {p1,p2};
 	}
-	return;
+	return {};
 }
 
 vector<point2d> normals(vector<point2d> vertices) {
@@ -91,14 +91,14 @@ vector<point2d> normals(vector<point2d> vertices) {
 	return ans;
 }
 
-void line_clip_Cyr_Bec(vector<point2d> vertices, point2d p0, point2d p1) {
+vector<point2d> line_clip_Cyr_Bec(vector<point2d> vertices, point2d p0, point2d p1) {
 	int n= vertices.size();
 	vector<point2d> nrmls= normals(vertices);
 	GLfloat tp= 0, tn= 1;
 	for (int i = 0; i < n; i++) {
 		point2d pei = vertices[i];
-		GLfloat pi = point2d::dot(nrmls[i],p0-pei);
-		GLfloat qi = point2d::dot(nrmls[i],p1-p0);
+		GLfloat pi = point2d::dot_prod(nrmls[i],p0-pei);
+		GLfloat qi = point2d::dot_prod(nrmls[i],p1-p0);
 		GLfloat t= (GLfloat)pi/(GLfloat)(-qi);
 		if (qi < 0) {
 			tn= min(tn, t);
@@ -109,11 +109,10 @@ void line_clip_Cyr_Bec(vector<point2d> vertices, point2d p0, point2d p1) {
 	}
 	point2d a1 = p0 + ((p1 - p0) * tn);
 	point2d a2 = p0 + ((p1 - p0) * tp);
-	plot2d(line_breshenham(a1.x, a1.y, a2.x, a2.y));
-	return;
+	return {a1, a2};
 }
 
-void line_clip_Liang_Bar(point2d win_min, point2d win_max, point2d p1, point2d p2) {
+vector<point2d> line_clip_Liang_Bar(point2d win_min, point2d win_max, point2d p1, point2d p2) {
 	GLfloat dx = p2.x - p1.x;
 	GLfloat dy = p2.y - p1.y;
 
@@ -134,7 +133,7 @@ void line_clip_Liang_Bar(point2d win_min, point2d win_max, point2d p1, point2d p
 		}
 	}
 	if (flag) {
-		return;
+		return {};
 	}
 
 	GLfloat u1=0,u2=1;
@@ -150,22 +149,21 @@ void line_clip_Liang_Bar(point2d win_min, point2d win_max, point2d p1, point2d p
 	}
 
 	if (u1 > u2) {
-		return;
+		return {};
 	}
 	else if (u1 == 0) {
 		GLfloat x2= p1.x + u2*dx;
 		GLfloat y2= p1.y + u2*dy;
-		plot2d(line_breshenham(roundof(p1.x), roundof(p1.y), roundof(x2), roundof(y2)));
-		return;
+		return { p1, {x2, y2} };
 	}
 	else {
 		GLfloat x1 = p1.x + u1 * dx;
 		GLfloat y1 = p1.y + u1 * dy;
 		GLfloat x2 = p1.x + u2 * dx;
 		GLfloat y2 = p1.y + u2 * dy;
-		plot2d(line_breshenham(roundof(x1), roundof(y1), roundof(x2), roundof(y2)));
+		return {{x1, y1},{x2, y2}};
 	}
-	return;
+	return {};
 }
 
 GLint inside(point2d win_min, point2d win_max, int c, point2d pt) {
@@ -213,8 +211,8 @@ point2d int_point(point2d p1, point2d p2, int c, int val) {
 	return ans;
 }
 
-void line_clip_polygon(point2d win_min, point2d win_max, vector<point2d> vin) {
-	vector<GLint> clippers = {win_min.x, win_max.x, win_min.y, win_max.y};
+vector<point2d> line_clip_polygon(point2d win_min, point2d win_max, vector<point2d> vin) {
+	vector<GLfloat> clippers = {win_min.x, win_max.x, win_min.y, win_max.y};
 	for (int k=0;k<4;k++) {
 		vector<point2d> vout;
 		int n= vin.size();
@@ -236,6 +234,5 @@ void line_clip_polygon(point2d win_min, point2d win_max, vector<point2d> vin) {
 		}
 		vin= vout;
 	}
-	plot2d(polygon(vin));
-	return;
+	return vin;
 }

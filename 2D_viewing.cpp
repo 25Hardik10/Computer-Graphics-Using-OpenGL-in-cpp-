@@ -1,9 +1,18 @@
 #include "utils.h"
 
-vector<point2d> windowtoviewport(GLint xw_min, GLint xw_max, GLint yw_min, GLint yw_max, GLint xv_min, GLint xv_max, GLint yv_min, GLint yv_max, vector<point2d> arr) {
+bool inside_window(point2d p, point2d w_min, point2d w_max) {
+	if (p.x <= w_max.x && p.x >= w_min.x && p.y <= w_max.y && p.y >= w_min.y) {
+		return true;
+	}
+	return false;
+}
+
+vector<point2d> windowtoviewport(point2d w_min, point2d w_max, point2d v_min, point2d v_max, vector<point2d> arr) {
+	GLfloat xw_min= w_min.x, yw_min=w_min.y, xw_max=w_max.x,yw_max=w_max.y, xv_min = v_min.x, yv_min = v_min.y, xv_max = v_max.x, yv_max = v_max.y;
+	
 	vector<point2d> ans;
 	for (point2d it : arr) {
-		if (inside_window(it.x, it.y, xw_min, xw_max, yw_min, yw_max)) {
+		if (inside_window(it, w_min, w_max)) {
 			ans.push_back(it);
 		}
 	}

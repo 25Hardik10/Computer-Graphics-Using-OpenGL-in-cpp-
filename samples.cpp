@@ -28,9 +28,9 @@ void rotating_cube() {
         vector<point3d> vertices_3d = homoto3d(perspective_projection(d, camera_transform(camera, pup, coi, vertices_homo)));
         vector<point2d> vertices_2d;
         for (point3d& it : vertices_3d) {
-            vertices_2d.push_back({ roundof(it.x),roundof(it.y) });
+            vertices_2d.push_back({ it.x, it.y });
         }
-        vector<point2d> points = verticestocube(vertices_2d);
+        vector<pixel> points = verticestocube(vertices_2d);
         plot2d(points);
     }
 }
