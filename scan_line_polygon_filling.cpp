@@ -13,7 +13,7 @@ struct edge {
 	GLint dir;
 };
 
-vector<pixel> scan_line_polygon_filling(vector<pixel> vertices) {
+vector<pixel> scan_line_polygon_filling(vector<pixel>& vertices) {
 
 	int v = vertices.size();
 

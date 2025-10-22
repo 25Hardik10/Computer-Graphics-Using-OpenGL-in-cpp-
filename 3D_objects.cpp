@@ -11,7 +11,7 @@ vector<point3d> linear_bezier(point3d p0, point3d p1) {
 	return ans;
 }
 
-vector<point3d> cube3d(vector<point3d> vertices) {
+vector<point3d> cube3d(vector<point3d>& vertices) {
 	vector<point3d> ans;
 	for (int i = 0; i < 4; i++) {
 		vector<point3d> edge = linear_bezier(vertices[i], vertices[(i + 1) % 4]);
@@ -34,7 +34,7 @@ vector<point3d> cube3d(vector<point3d> vertices) {
 	return ans;
 }
 
-vector<pixel> verticestocube(vector<point2d> vertices) {
+vector<pixel> verticestocube(vector<point2d>& vertices) {
 	vector<pixel> ans;
 	for (int i = 0; i < 4; i++) {
 		vector<pixel> edge = line_breshenham(vertices[i], vertices[(i + 1) % 4]);

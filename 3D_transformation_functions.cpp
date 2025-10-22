@@ -1,6 +1,6 @@
 #include "utils.h"
 
-vector<point3d> translate3d(GLfloat tx, GLfloat ty, GLfloat tz, vector<point3d> arr) {
+vector<point3d> translate3d(GLfloat tx, GLfloat ty, GLfloat tz, vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = it.x + tx;
@@ -11,7 +11,7 @@ vector<point3d> translate3d(GLfloat tx, GLfloat ty, GLfloat tz, vector<point3d> 
 	return ans;
 }
 
-vector<point3d> scale3d(GLfloat sx, GLfloat sy, GLfloat sz, vector<point3d> arr) {
+vector<point3d> scale3d(GLfloat sx, GLfloat sy, GLfloat sz, vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = it.x * sx;
@@ -22,7 +22,7 @@ vector<point3d> scale3d(GLfloat sx, GLfloat sy, GLfloat sz, vector<point3d> arr)
 	return ans;
 }
 
-vector<point3d> rotate3dz(double theta, vector<point3d> arr) {
+vector<point3d> rotate3dz(double theta, vector<point3d>& arr) {
 	theta = theta * PI / 180.0;
 	vector<point3d> ans;
 	for (point3d& it : arr) {
@@ -34,7 +34,7 @@ vector<point3d> rotate3dz(double theta, vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> rotate3dx(double theta, vector<point3d> arr) {
+vector<point3d> rotate3dx(double theta, vector<point3d>& arr) {
 	theta = theta * PI / 180.0;
 	vector<point3d> ans;
 	for (point3d& it : arr) {
@@ -46,7 +46,7 @@ vector<point3d> rotate3dx(double theta, vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> rotate3dy(double theta, vector<point3d> arr) {
+vector<point3d> rotate3dy(double theta, vector<point3d>& arr) {
 	theta = theta * PI / 180.0;
 	vector<point3d> ans;
 	for (point3d& it : arr) {
@@ -58,7 +58,7 @@ vector<point3d> rotate3dy(double theta, vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> reflect3dxy(vector<point3d> arr) {
+vector<point3d> reflect3dxy(vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = it.x;
@@ -69,7 +69,7 @@ vector<point3d> reflect3dxy(vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> reflect3dyz(vector<point3d> arr) {
+vector<point3d> reflect3dyz(vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = -it.x;
@@ -80,7 +80,7 @@ vector<point3d> reflect3dyz(vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> reflect3dxz(vector<point3d> arr) {
+vector<point3d> reflect3dxz(vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = it.x;
@@ -91,7 +91,7 @@ vector<point3d> reflect3dxz(vector<point3d> arr) {
 	return ans;
 }
 
-vector<point3d> shear3d(GLfloat shxy, GLfloat shxz, GLfloat shyx, GLfloat shyz, GLfloat shzx, GLfloat shzy, vector<point3d> arr) {
+vector<point3d> shear3d(GLfloat shxy, GLfloat shxz, GLfloat shyx, GLfloat shyz, GLfloat shzx, GLfloat shzy, vector<point3d>& arr) {
 	vector<point3d> ans;
 	for (point3d& it : arr) {
 		GLfloat nx = it.x + shxy * it.y + shxz * it.z;

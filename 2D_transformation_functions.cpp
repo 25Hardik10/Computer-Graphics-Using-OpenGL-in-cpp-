@@ -1,6 +1,6 @@
 #include "utils.h"
 
-vector<point2d> translate2d(GLfloat tx, GLfloat ty, vector<point2d> arr) {
+vector<point2d> translate2d(GLfloat tx, GLfloat ty, vector<point2d>& arr) {
 	vector<point2d> ans;
 	for (point2d& it : arr) {
 		GLfloat nx= it.x + tx;
@@ -10,7 +10,7 @@ vector<point2d> translate2d(GLfloat tx, GLfloat ty, vector<point2d> arr) {
 	return ans;
 }
 
-vector<point2d> scale2d(GLfloat sx, GLfloat sy, vector<point2d> arr) {
+vector<point2d> scale2d(GLfloat sx, GLfloat sy, vector<point2d>& arr) {
 	vector<point2d> ans;
 	for (point2d& it : arr) {
 		GLfloat nx = it.x * sx;
@@ -20,7 +20,7 @@ vector<point2d> scale2d(GLfloat sx, GLfloat sy, vector<point2d> arr) {
 	return ans;
 }
 
-vector<point2d> rotate2d(double theta, vector<point2d> arr) {
+vector<point2d> rotate2d(double theta, vector<point2d>& arr) {
 	theta = theta*PI/180.0;
 	vector<point2d> ans;
 	for (point2d& it : arr) {
@@ -31,7 +31,7 @@ vector<point2d> rotate2d(double theta, vector<point2d> arr) {
 	return ans;
 }
 
-vector<point2d> reflectx2d(vector<point2d> arr) {
+vector<point2d> reflectx2d(vector<point2d>& arr) {
 	vector<point2d> ans;
 	for (point2d& it : arr) {
 		GLfloat nx = it.x;
@@ -41,7 +41,7 @@ vector<point2d> reflectx2d(vector<point2d> arr) {
 	return ans;
 }
 
-vector<point2d> reflecty2d(vector<point2d> arr) {
+vector<point2d> reflecty2d(vector<point2d>& arr) {
 	vector<point2d> ans;
 	for (point2d& it : arr) {
 		GLfloat nx = -it.x;
@@ -51,7 +51,7 @@ vector<point2d> reflecty2d(vector<point2d> arr) {
 	return ans;
 }
 
-vector<point2d> shear2d(GLfloat shx, GLfloat shy, vector<point2d> arr) {
+vector<point2d> shear2d(GLfloat shx, GLfloat shy, vector<point2d>& arr) {
 	vector<point2d> ans;
 	for (point2d& it : arr) {
 		GLfloat nx = it.x + shx * it.y;

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<vector<vector<GLfloat>>> _3dtohomo(vector<point3d> arr, GLfloat h) {
+vector<vector<vector<GLfloat>>> _3dtohomo(vector<point3d>& arr, GLfloat h) {
 	vector<vector<vector<GLfloat>>> ans;
 	for (point3d& it : arr) {
 		ans.push_back({ {it.x},{it.y}, {it.z}, {h} });
@@ -11,7 +11,7 @@ vector<vector<vector<GLfloat>>> _3dtohomo(vector<point3d> arr, GLfloat h) {
 	return ans;
 }
 
-vector<point3d> homoto3d(vector<vector<vector<GLfloat>>> arr) {
+vector<point3d> homoto3d(vector<vector<vector<GLfloat>>>& arr) {
 	vector<point3d> ans;
 	for (vector<vector<GLfloat>>& it : arr) {
 		GLfloat x = it[0][0] / it[3][0];

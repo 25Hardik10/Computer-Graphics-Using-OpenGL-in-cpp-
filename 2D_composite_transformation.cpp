@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<vector<vector<GLfloat>>> _2dtohomo(vector<point2d> arr, GLfloat h) {
+vector<vector<vector<GLfloat>>> _2dtohomo(vector<point2d>& arr, GLfloat h) {
 	vector<vector<vector<GLfloat>>> ans;
 	for (point2d& it : arr) {
 		ans.push_back({{(GLfloat)it.x},{(GLfloat)it.y},{h}});
@@ -11,7 +11,7 @@ vector<vector<vector<GLfloat>>> _2dtohomo(vector<point2d> arr, GLfloat h) {
 	return ans;
 }
 
-vector<point2d> homoto2d(vector<vector<vector<GLfloat>>> arr) {
+vector<point2d> homoto2d(vector<vector<vector<GLfloat>>>& arr) {
 	vector<point2d> ans;
 	for (vector<vector<GLfloat>>& it : arr) {
 		GLfloat x= it[0][0] / it[2][0];

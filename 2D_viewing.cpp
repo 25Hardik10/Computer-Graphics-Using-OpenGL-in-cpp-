@@ -7,7 +7,7 @@ bool inside_window(point2d p, point2d w_min, point2d w_max) {
 	return false;
 }
 
-vector<point2d> windowtoviewport(point2d w_min, point2d w_max, point2d v_min, point2d v_max, vector<point2d> arr) {
+vector<point2d> windowtoviewport(point2d w_min, point2d w_max, point2d v_min, point2d v_max, vector<point2d>& arr) {
 	GLfloat xw_min= w_min.x, yw_min=w_min.y, xw_max=w_max.x,yw_max=w_max.y, xv_min = v_min.x, yv_min = v_min.y, xv_max = v_max.x, yv_max = v_max.y;
 	
 	vector<point2d> ans;

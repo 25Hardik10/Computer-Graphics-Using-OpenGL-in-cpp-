@@ -25,7 +25,9 @@ void rotating_cube() {
         for (vector<vector<GLfloat>>& it : vertices_homo) {
             it = matrixmultiplication(R, it);
         }
-        vector<point3d> vertices_3d = homoto3d(perspective_projection(d, camera_transform(camera, pup, coi, vertices_homo)));
+        vector<vector<vector<GLfloat>>> ctcube = camera_transform(camera, pup, coi, vertices_homo);
+        vector<vector<vector<GLfloat>>> ppcube = perspective_projection(d, ctcube);
+        vector<point3d> vertices_3d = homoto3d(ppcube);
         vector<point2d> vertices_2d;
         for (point3d& it : vertices_3d) {
             vertices_2d.push_back({ it.x, it.y });

@@ -23,7 +23,8 @@ GLint roundof(GLfloat n) {
     return (GLint)(n + 1.0);
 }
 
-void plot2d(vector<pixel> arr) {
+void plot2d(vector<pixel>& arr) {
+    glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_POINTS);
     for (pixel& it : arr) {
         glVertex2i(it.x,it.y);

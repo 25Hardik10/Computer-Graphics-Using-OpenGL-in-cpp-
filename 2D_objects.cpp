@@ -1,6 +1,6 @@
 #include "utils.h"
 
-vector<pixel> polygon(vector<point2d> vertices) {
+vector<pixel> polygon(vector<point2d>& vertices) {
 	vector<pixel> ans;
 	int n= vertices.size();
 	for (int i = 0; i < n; i++) {

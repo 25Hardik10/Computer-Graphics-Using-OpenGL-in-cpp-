@@ -79,7 +79,7 @@ vector<point2d> line_clip_Coh_Suth(point2d win_min, point2d win_max, point2d p1,
 	return {};
 }
 
-vector<point2d> normals(vector<point2d> vertices) {
+vector<point2d> normals_2d(vector<point2d>& vertices) {
 	int n= vertices.size();
 	vector<point2d> ans;
 	for (int i = 0; i < n; i++) {
@@ -91,15 +91,15 @@ vector<point2d> normals(vector<point2d> vertices) {
 	return ans;
 }
 
-vector<point2d> line_clip_Cyr_Bec(vector<point2d> vertices, point2d p0, point2d p1) {
+vector<point2d> line_clip_Cyr_Bec_2d(vector<point2d>& vertices, point2d p0, point2d p1) {
 	int n= vertices.size();
-	vector<point2d> nrmls= normals(vertices);
+	vector<point2d> nrmls= normals_2d(vertices);
 	GLfloat tp= 0, tn= 1;
 	for (int i = 0; i < n; i++) {
 		point2d pei = vertices[i];
 		GLfloat pi = point2d::dot_prod(nrmls[i],p0-pei);
 		GLfloat qi = point2d::dot_prod(nrmls[i],p1-p0);
-		GLfloat t= (GLfloat)pi/(GLfloat)(-qi);
+		GLfloat t= -pi/qi;
 		if (qi < 0) {
 			tn= min(tn, t);
 		}
@@ -107,6 +107,7 @@ vector<point2d> line_clip_Cyr_Bec(vector<point2d> vertices, point2d p0, point2d 
 			tp= max(tp, t);
 		}
 	}
+	if(tn<=tp) return {};
 	point2d a1 = p0 + ((p1 - p0) * tn);
 	point2d a2 = p0 + ((p1 - p0) * tp);
 	return {a1, a2};
@@ -211,7 +212,7 @@ point2d int_point(point2d p1, point2d p2, int c, int val) {
 	return ans;
 }
 
-vector<point2d> line_clip_polygon(point2d win_min, point2d win_max, vector<point2d> vin) {
+vector<point2d> line_clip_polygon(point2d win_min, point2d win_max, vector<point2d>& vin) {
 	vector<GLfloat> clippers = {win_min.x, win_max.x, win_min.y, win_max.y};
 	for (int k=0;k<4;k++) {
 		vector<point2d> vout;

@@ -17,7 +17,7 @@ vector<vector<GLfloat>> Mw2v(point3d camera, point3d pup, point3d coi) {
 	return matrixmultiplication(R, T);
 }
 
-vector<vector<vector<GLfloat>>> camera_transform(point3d camera, point3d pup, point3d coi, vector<vector<vector<GLfloat>>> points_homo) {
+vector<vector<vector<GLfloat>>> camera_transform(point3d camera, point3d pup, point3d coi, vector<vector<vector<GLfloat>>>& points_homo) {
 	vector<vector<GLfloat>> mw2v = Mw2v(camera, pup, coi);
 	vector<vector<vector<GLfloat>>> ans;
 	for (vector<vector<GLfloat>>& it : points_homo) {
@@ -34,7 +34,7 @@ vector<vector<GLfloat>> Tpsp(GLfloat d) {
 			{0,0,dinv,0} };
 }
 
-vector<vector<vector<GLfloat>>> perspective_projection(GLfloat d, vector<vector<vector<GLfloat>>> points_homo) {
+vector<vector<vector<GLfloat>>> perspective_projection(GLfloat d, vector<vector<vector<GLfloat>>>& points_homo) {
 	vector<vector<GLfloat>> tpsp = Tpsp(d);
 	vector<vector<vector<GLfloat>>> ans;
 	for (vector<vector<GLfloat>>& it : points_homo) {
@@ -50,7 +50,7 @@ vector<vector<GLfloat>> Tpar(GLfloat d) {
 			{0,0,0,1} };
 }
 
-vector<vector<vector<GLfloat>>> parallel_projection(GLfloat d, vector<vector<vector<GLfloat>>> points_homo) {
+vector<vector<vector<GLfloat>>> parallel_projection(GLfloat d, vector<vector<vector<GLfloat>>>& points_homo) {
 	vector<vector<GLfloat>> tpar = Tpar(d);
 	vector<vector<vector<GLfloat>>> ans;
 	for (vector<vector<GLfloat>>& it : points_homo) {
