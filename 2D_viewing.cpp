@@ -11,7 +11,7 @@ vector<point2d> windowtoviewport(point2d w_min, point2d w_max, point2d v_min, po
 	GLfloat xw_min= w_min.x, yw_min=w_min.y, xw_max=w_max.x,yw_max=w_max.y, xv_min = v_min.x, yv_min = v_min.y, xv_max = v_max.x, yv_max = v_max.y;
 	
 	vector<point2d> ans;
-	for (point2d it : arr) {
+	for (point2d& it : arr) {
 		if (inside_window(it, w_min, w_max)) {
 			ans.push_back(it);
 		}

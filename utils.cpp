@@ -24,9 +24,9 @@ GLint roundof(GLfloat n) {
 }
 
 void plot2d(vector<pixel>& arr) {
-    glColor3f(0.0, 0.0, 0.0);
     glBegin(GL_POINTS);
     for (pixel& it : arr) {
+        glColor3f(it.r, it.g, it.b);
         glVertex2i(it.x,it.y);
     }
     glEnd();

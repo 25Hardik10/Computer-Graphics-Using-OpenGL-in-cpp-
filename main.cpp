@@ -11,12 +11,16 @@ static void init() {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
+void test() {
+
+}
+
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowPosition(480, 270);
+    glutInitWindowPosition(550, 350);
     glutInitWindowSize(400, 225);
-    glutCreateWindow("Lab");
+    glutCreateWindow("Test");
 
     init();
     glutDisplayFunc(rotating_cube);

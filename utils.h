@@ -21,14 +21,23 @@ class point2d {
 public:
 	GLfloat x;
 	GLfloat y;
+	GLfloat r;
+	GLfloat g;
+	GLfloat b;
 
 	point2d() {
 		this->x = 0;
 		this->y = 0;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
 	}
 	point2d(GLfloat x, GLfloat y) {
 		this->x = x;
 		this->y = y;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
 	}
 	
 	point2d operator-(point2d pt) {
@@ -65,17 +74,26 @@ public:
 	GLfloat x;
 	GLfloat y;
 	GLfloat z;
+	GLfloat r;
+	GLfloat g;
+	GLfloat b;
 
 	point3d() {
 		this->x =0;
 		this->y =0;
 		this->z =0;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
 	}
 
 	point3d(GLfloat x, GLfloat y, GLfloat z) {
 		this->x = x;
 		this->y = y;
 		this->z = z;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
 	}
 
 	point3d operator/(GLfloat deno) {
@@ -126,15 +144,32 @@ class pixel {
 public:
 	GLint x;
 	GLint y;
+	GLfloat r;
+	GLfloat g;
+	GLfloat b;
 
 	pixel() {
 		this->x = 0;
 		this->y = 0;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
 	}
 
 	pixel(GLint x, GLint y) {
 		this->x = x;
 		this->y = y;
+		this->r = 0;
+		this->g = 0;
+		this->b = 0;
+	}
+
+	pixel(GLint x, GLint y, GLfloat r, GLfloat g, GLfloat b) {
+		this->x = x;
+		this->y = y;
+		this->r = r;
+		this->g = g;
+		this->b = b;
 	}
 
 	pixel operator-(const pixel& pt) {
@@ -217,7 +252,7 @@ vector<vector<GLfloat>> shear3dhomo(GLfloat shxy, GLfloat shxz, GLfloat shyx, GL
 
 // Stage 3 : Lighting
 
-
+void lighting(point3d source, vector<point3d> normals, point3d eye, vector<point3d>& pts, GLfloat Ia, GLfloat Il, GLfloat ka, GLfloat kd, GLfloat ks, GLfloat n, GLfloat a0 = 0, GLfloat a1 = 1, GLfloat a2 = 0, GLfloat a = 2);
 
 // Stage 4 : Viewing Pipeline
 
@@ -278,5 +313,6 @@ vector<pixel> verticestocube(vector<point2d>& vertices);
 //samples
 
 void rotating_cube();
+void sphere();
 
 #endif

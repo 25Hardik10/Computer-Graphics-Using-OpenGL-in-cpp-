@@ -31,7 +31,7 @@ vector<vector<GLfloat>> Tpsp(GLfloat d) {
 	return { {1,0,0,0},
 			{0,1,0,0},
 			{0,0,1,0},
-			{0,0,dinv,0} };
+			{0,0,-dinv,0} };
 }
 
 vector<vector<vector<GLfloat>>> perspective_projection(GLfloat d, vector<vector<vector<GLfloat>>>& points_homo) {
